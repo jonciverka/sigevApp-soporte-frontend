@@ -1,38 +1,36 @@
 import 'package:sigevappsoportefrontend/domain/models/chat.dart';
 
 abstract class HomeState {
-  HomeState({required this.chats});
+  HomeState({required this.chat});
 
-  final List<Chat> chats;
+  final Chat chat;
   HomeState copyWith();
 }
 
 class HomeInitial extends HomeState {
-  HomeInitial() : super(chats: []);
+  HomeInitial() : super(chat: Chat());
 
   @override
   HomeState copyWith() => HomeInitial();
 }
 
 class HomeLoading extends HomeState {
-  HomeLoading({List<Chat>? chats}) : super(chats: chats ?? []);
+  HomeLoading({Chat? chat}) : super(chat: chat ?? Chat());
 
   @override
-  HomeState copyWith({List<Chat>? chats}) =>
-      HomeLoading(chats: chats ?? this.chats);
+  HomeState copyWith({Chat? chat}) => HomeLoading(chat: chat ?? this.chat);
 }
 
 class HomeData extends HomeState {
-  HomeData({required super.chats}) : super();
+  HomeData({required super.chat}) : super();
 
   @override
-  HomeState copyWith({List<Chat>? chats}) =>
-      HomeData(chats: chats ?? this.chats);
+  HomeState copyWith({Chat? chat}) => HomeData(chat: chat ?? this.chat);
 }
 
 class HomeError extends HomeState {
-  HomeError() : super(chats: []);
+  HomeError() : super(chat: Chat());
 
   @override
-  HomeState copyWith({List<Chat>? chats}) => HomeError();
+  HomeState copyWith({Chat? chat}) => HomeError();
 }

@@ -10,6 +10,7 @@ class AppIcons {
   static const double iconLargeSize = 32.0;
   static const double iconXLargeSize = 64.0;
 
+  static const IconData person = Icons.person;
   static const IconData close = Icons.close;
   static const IconData error = Icons.error;
   static const IconData warning = Icons.warning;

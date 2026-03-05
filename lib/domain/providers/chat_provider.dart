@@ -58,7 +58,7 @@ class ChatProvider implements ChatRepository {
       );
       var responseJSON = json.decode(response)["data"];
       if (responseJSON.isEmpty) return [];
-      return chatssFromJsonList(response);
+      return chatssFromJsonList(responseJSON);
     } on ApiClientException catch (exc) {
       throw exc.message.toString();
     } catch (exc) {

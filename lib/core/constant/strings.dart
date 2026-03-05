@@ -11,6 +11,7 @@ mixin AppLocale {
   static const String errorCorreoMalFormado = 'errorCorreoMalFormado';
   static const String errorNoCumpleConElMontoMinimoAnticipo =
       'errorNoCumpleConElMontoMinimoAnticipo';
+  static const String buscar = 'buscar';
 
   static const Map<String, dynamic> ES = {
     avisoSinInternet: 'No hay conexión a Internet.',
@@ -23,5 +24,6 @@ mixin AppLocale {
     errorNoCumpleConElMontoMinimoAnticipo:
         "No cumple con el monto mínimo a cuenta",
     cargando: 'Cargando...',
+    buscar: 'Buscar',
   };
 }

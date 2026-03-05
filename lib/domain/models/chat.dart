@@ -5,11 +5,11 @@ List<Chat> chatssFromJsonList(List<dynamic> jsonList) =>
     jsonList.map((json) => Chat.fromJson(json)).toList();
 
 class Chat {
-  String? idChat;
+  int? idChat;
   String? claveTramite;
   String? nombreCliente;
   String? apellidoCliente;
-  String? idTramite;
+  int? idTramite;
   DateTime? fechachat;
   Chat({
     this.idChat,

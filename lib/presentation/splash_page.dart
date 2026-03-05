@@ -26,10 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString(LocalStorageKeys.keyAccesToken, token);
       globals.token = token;
+      if (mounted) {
+        context.go(ScreenPaths.homeRoute);
+      }
     } catch (mensaje) {
       if (mounted) {
         context.go(ScreenPaths.homeRoute);
-        setState(() {});
       }
     }
   }

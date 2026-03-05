@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:sigevappsoportefrontend/core/constant/screen_paths.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sigevappsoportefrontend/presentation/pages/home/home_page.dart';
 import 'package:sigevappsoportefrontend/presentation/splash_page.dart';
 
 final GoRouter router = GoRouter(
@@ -18,10 +19,10 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      path: ScreenPaths.splashRoute,
+      path: ScreenPaths.homeRoute,
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
-        child: SplashScreen(),
+        child: HomePage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) =>
             FadeTransition(opacity: animation, child: child),
       ),
