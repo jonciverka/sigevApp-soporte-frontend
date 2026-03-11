@@ -38,9 +38,9 @@ class ChatProvider implements ChatRepository {
         UtilitiesHeaders.getHeaderSinToken(),
         isChat: true,
       );
-      var responseJSON = json.decode(response)["data"];
+      List responseJSON = json.decode(response)["data"];
       if (responseJSON.isEmpty) return [];
-      return mensajessFromJsonList(response["catCilindros"]);
+      return mensajessFromJsonList(responseJSON);
     } on ApiClientException catch (exc) {
       throw exc.message.toString();
     } catch (exc) {

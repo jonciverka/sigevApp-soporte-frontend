@@ -12,6 +12,10 @@ mixin AppLocale {
   static const String errorNoCumpleConElMontoMinimoAnticipo =
       'errorNoCumpleConElMontoMinimoAnticipo';
   static const String buscar = 'buscar';
+  static const String inputChat = 'inputChat';
+  static const String infoCliente = 'infoCliente';
+  static const String habilitarRecibirArchivos = 'habilitarRecibirArchivos';
+  static const String finalizarSoporte = 'finalizarSoporte';
 
   static const Map<String, dynamic> ES = {
     avisoSinInternet: 'No hay conexión a Internet.',
@@ -25,5 +29,9 @@ mixin AppLocale {
         "No cumple con el monto mínimo a cuenta",
     cargando: 'Cargando...',
     buscar: 'Buscar',
+    inputChat: "Mensaje",
+    infoCliente: "Info. cliente",
+    habilitarRecibirArchivos: "Habilitar recibir archivos",
+    finalizarSoporte: "Finalizar soporte",
   };
 }

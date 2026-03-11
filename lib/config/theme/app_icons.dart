@@ -11,10 +11,14 @@ class AppIcons {
   static const double iconXLargeSize = 64.0;
 
   static const IconData person = Icons.person;
+  static const IconData arrowForward = Icons.arrow_forward_rounded;
   static const IconData close = Icons.close;
+  static const IconData more = Icons.more_vert_rounded;
   static const IconData error = Icons.error;
   static const IconData warning = Icons.warning;
+  static const IconData info = Icons.info;
   static const IconData check = Icons.check_circle_outline_outlined;
+  static const IconData galery = Icons.photo_library_sharp;
 
   // Icons
   static Icon smallIcon(IconData icon, {Color? color}) =>

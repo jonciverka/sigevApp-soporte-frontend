@@ -10,6 +10,7 @@ class Chat {
   String? nombreCliente;
   String? apellidoCliente;
   int? idTramite;
+  String? idContribuyente;
   DateTime? fechachat;
   Chat({
     this.idChat,
@@ -26,6 +27,7 @@ class Chat {
     nombreCliente = json['NOMBRE_CLIENTE'];
     apellidoCliente = json['APELLIDO_CLIENTE'];
     idTramite = json['ID_TRAMITE'];
+    idContribuyente = json['ID_CONTRIBUYENTE'].toString();
     fechachat = DateFormat(
       "yyyy-MM-ddTHH:mm:ss",
     ).parse(json['FECHA_REGISTRO']).add(dateTime.timeZoneOffset);

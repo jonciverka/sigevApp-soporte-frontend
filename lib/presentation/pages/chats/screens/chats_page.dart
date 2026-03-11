@@ -54,7 +54,9 @@ class ChatsPageBody extends StatelessWidget {
         children: [
           AppTextFormField(
             onChanged: (value) {},
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
             controller: chatsCubit.controller,
             labelText: AppLocale.buscar.getString(context),
           ),
