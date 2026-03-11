@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_icons.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
 import 'package:sigevappsoportefrontend/core/constant/strings.dart';
 import 'package:sigevappsoportefrontend/domain/models/chat.dart';
+import 'package:sigevappsoportefrontend/presentation/pages/home/cubit/home_cubit.dart';
 
 class AppHeaderChat extends StatefulWidget {
   const AppHeaderChat({super.key, required this.chat});
@@ -18,6 +21,7 @@ class _AppHeaderChatState extends State<AppHeaderChat> {
   OverlayEntry? _overlayEntry;
 
   void _showMenu() {
+    var homeCubit = context.read<HomeCubit>();
     final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
 
@@ -35,7 +39,11 @@ class _AppHeaderChatState extends State<AppHeaderChat> {
             right: 32,
             child: Material(
               color: Colors.transparent,
-              child: AppMenuHeader(), //
+              // 2. AQUÍ VA: Usamos .value para pasar la instancia existente
+              child: BlocProvider.value(
+                value: homeCubit,
+                child: AppMenuHeader(onClose: _closeMenu),
+              ),
             ),
           ),
         ],
@@ -119,10 +127,11 @@ class _AppHeaderChatState extends State<AppHeaderChat> {
 }
 
 class AppMenuHeader extends StatelessWidget {
-  const AppMenuHeader({super.key});
-
+  const AppMenuHeader({super.key, required this.onClose});
+  final VoidCallback onClose;
   @override
   Widget build(BuildContext context) {
+    var homeCubit = context.read<HomeCubit>();
     return Container(
       width: 300,
       margin: const EdgeInsets.only(top: 3, right: 0, left: 0),
@@ -137,7 +146,10 @@ class AppMenuHeader extends StatelessWidget {
           AppElementMenuHeader(
             title: AppLocale.infoCliente.getString(context),
             icon: AppIcons.info,
-            onTap: () => {},
+            onTap: () {
+              homeCubit.showInfoClient();
+              onClose();
+            },
           ),
           AppElementMenuHeader(
             title: AppLocale.habilitarRecibirArchivos.getString(context),
@@ -165,7 +177,7 @@ class AppElementMenuHeader extends StatefulWidget {
 
   final String title;
   final IconData icon;
-  final VoidCallback? onTap;
+  final Function? onTap;
 
   @override
   State<AppElementMenuHeader> createState() => _AppElementMenuHeaderState();
@@ -195,7 +207,9 @@ class _AppElementMenuHeaderState extends State<AppElementMenuHeader> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => widget.onTap,
+      onTap: () {
+        widget.onTap?.call();
+      },
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
@@ -205,7 +219,6 @@ class _AppElementMenuHeaderState extends State<AppElementMenuHeader> {
       borderRadius: BorderRadius.circular(context.spacing16),
       onHover: (value) =>
           setState(() => _state = _state.copyWith(isHovered: value)),
-
       onFocusChange: (value) =>
           setState(() => _state = _state.copyWith(isFocused: value)),
       child: Container(
