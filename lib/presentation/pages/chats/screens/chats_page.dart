@@ -16,7 +16,8 @@ class ChatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatsCubit(context: context),
+      create: (context) =>
+          ChatsCubit(context: context, homeCubit: context.read<HomeCubit>()),
       child: BlocBuilder<ChatsCubit, ChatsState>(
         builder: (context, state) {
           switch (state) {

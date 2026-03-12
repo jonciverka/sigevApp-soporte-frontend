@@ -16,6 +16,12 @@ mixin AppLocale {
   static const String infoCliente = 'infoCliente';
   static const String habilitarRecibirArchivos = 'habilitarRecibirArchivos';
   static const String finalizarSoporte = 'finalizarSoporte';
+  static const String tituloFinalizarSoporte = 'tituloFinalizarSoporte';
+  static const String descripcionFinalizarSoporte =
+      'descripcionFinalizarSoporte';
+  static const String botonFinalizarSoporte = 'botonFinalizarSoporte';
+  static const String botonCancelarFinalizarSoporte =
+      'botonCancelarFinalizarSoporte';
 
   static const Map<String, dynamic> ES = {
     avisoSinInternet: 'No hay conexión a Internet.',
@@ -33,5 +39,10 @@ mixin AppLocale {
     infoCliente: "Info. cliente",
     habilitarRecibirArchivos: "Habilitar recibir archivos",
     finalizarSoporte: "Finalizar soporte",
+    tituloFinalizarSoporte: "¿Estas seguro de finalizar el soporte?",
+    descripcionFinalizarSoporte:
+        "Una vez que finalices no podrás deshacer esta acción",
+    botonFinalizarSoporte: "Finalizar soporte",
+    botonCancelarFinalizarSoporte: "Cancelar",
   };
 }

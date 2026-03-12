@@ -15,12 +15,12 @@ class ChatProvider implements ChatRepository {
   @override
   Future<void> finalizarChat({required String pkChatBarraFija}) async {
     try {
-      // final dynamic response = await _apiService.postRequest(
-      // ApiConstants.finalizarChat,
-      //   {'pkChatBarraFija': pkChatBarraFija},
-      //   UtilitiesHeaders.getHeaderSinToken(),
-      //   isChat: true,
-      // );
+      await _apiService.postRequest(
+        ApiConstants.finalizarChat,
+        {'pkChatBarraFija': pkChatBarraFija},
+        UtilitiesHeaders.getHeaderSinToken(),
+        isChat: true,
+      );
     } on ApiClientException catch (exc) {
       throw exc.message.toString();
     } catch (exc) {

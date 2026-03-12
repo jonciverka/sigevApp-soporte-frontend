@@ -8,17 +8,20 @@ import 'package:sigevappsoportefrontend/core/constant/strings.dart';
 import 'package:sigevappsoportefrontend/domain/models/chat.dart';
 import 'package:sigevappsoportefrontend/domain/providers/chat_provider.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/chats/cubit/chats_state.dart';
+import 'package:sigevappsoportefrontend/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/widgets/app_toast_notification.dart';
 
 class ChatsCubit extends Cubit<ChatsState> {
   final provider = ChatProvider();
   final BuildContext _context;
   TextEditingController controller = TextEditingController();
-  ChatsCubit({required BuildContext context})
+  HomeCubit homeCubit;
+  ChatsCubit({required BuildContext context, required this.homeCubit})
     : _context = context,
       super(ChatsInitial()) {
     getChats();
   }
+
   Future<void> getChats() async {
     try {
       emit(ChatsLoading());

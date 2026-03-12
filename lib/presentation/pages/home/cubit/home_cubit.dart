@@ -15,6 +15,10 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeData(chat: chat));
   }
 
+  void cleanChat() async {
+    emit(HomeInitial());
+  }
+
   void showInfoClient() async {
     emit(HomeData(showInfoClient: true, chat: state.chat));
   }

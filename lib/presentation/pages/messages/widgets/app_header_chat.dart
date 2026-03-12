@@ -6,7 +6,9 @@ import 'package:sigevappsoportefrontend/config/theme/app_icons.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
 import 'package:sigevappsoportefrontend/core/constant/strings.dart';
 import 'package:sigevappsoportefrontend/domain/models/chat.dart';
+import 'package:sigevappsoportefrontend/domain/models/mensaje.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/home/cubit/home_cubit.dart';
+import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_cubit.dart';
 
 class AppHeaderChat extends StatefulWidget {
   const AppHeaderChat({super.key, required this.chat});
@@ -22,6 +24,8 @@ class _AppHeaderChatState extends State<AppHeaderChat> {
 
   void _showMenu() {
     var homeCubit = context.read<HomeCubit>();
+    var messageCubit = context.read<MessageCubit>();
+
     final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
 
@@ -40,8 +44,11 @@ class _AppHeaderChatState extends State<AppHeaderChat> {
             child: Material(
               color: Colors.transparent,
               // 2. AQUÍ VA: Usamos .value para pasar la instancia existente
-              child: BlocProvider.value(
-                value: homeCubit,
+              child: MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeCubit),
+                  BlocProvider.value(value: messageCubit), // Tu segundo Bloc
+                ],
                 child: AppMenuHeader(onClose: _closeMenu),
               ),
             ),
@@ -132,6 +139,7 @@ class AppMenuHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var homeCubit = context.read<HomeCubit>();
+    var messageCubit = context.read<MessageCubit>();
     return Container(
       width: 300,
       margin: const EdgeInsets.only(top: 3, right: 0, left: 0),
@@ -154,12 +162,18 @@ class AppMenuHeader extends StatelessWidget {
           AppElementMenuHeader(
             title: AppLocale.habilitarRecibirArchivos.getString(context),
             icon: AppIcons.galery,
-            onTap: () => {},
+            onTap: () {
+              messageCubit.openModalFinalizarChat();
+              onClose();
+            },
           ),
           AppElementMenuHeader(
             title: AppLocale.finalizarSoporte.getString(context),
             icon: AppIcons.check,
-            onTap: () => {},
+            onTap: () {
+              messageCubit.openModalFinalizarChat();
+              onClose();
+            },
           ),
         ],
       ),

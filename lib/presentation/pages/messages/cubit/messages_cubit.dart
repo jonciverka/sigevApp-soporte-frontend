@@ -11,6 +11,7 @@ import 'package:sigevappsoportefrontend/domain/models/mensaje.dart';
 import 'package:sigevappsoportefrontend/domain/providers/chat_provider.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_state.dart';
+import 'package:sigevappsoportefrontend/presentation/widgets/app_modal_pregunta.dart';
 import 'package:sigevappsoportefrontend/presentation/widgets/app_toast_notification.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -29,7 +30,11 @@ class MessageCubit extends Cubit<MessageState> {
   }
   void _handleInitialState() {
     homeCubit.stream.listen((onData) {
-      _obtenerMensajes();
+      if (onData.chat.claveTramite == null) {
+        emit(MessageInitial());
+      } else {
+        _obtenerMensajes();
+      }
     });
   }
 
@@ -77,11 +82,64 @@ class MessageCubit extends Cubit<MessageState> {
       List<Mensaje> mensajes = await provider.obtenerMensajesChat(
         claveTramite: homeCubit.state.chat.claveTramite ?? '',
       );
-
       emit(MessageData(chats: mensajes));
       await cerrarSocket();
       await contactarSocket();
       await unirseASocket();
+    } on ServerErrorException {
+      showToastNotification(
+        context: _context,
+        message: AppLocale.error.getString(_context),
+        type: ToastType.error,
+      );
+      emit(MessageError());
+      return;
+    } on NetworkException {
+      showToastNotification(
+        context: _context,
+        message: AppLocale.avisoSinInternet.getString(_context),
+        type: ToastType.error,
+      );
+      emit(MessageError());
+      return;
+    } on ApiClientException catch (e) {
+      showToastNotification(
+        context: _context,
+        message: e.message,
+        type: ToastType.error,
+      );
+      emit(MessageError());
+      return;
+    } catch (e) {
+      showToastNotification(
+        context: _context,
+        message: e.toString(),
+        type: ToastType.error,
+      );
+
+      emit(MessageError());
+      return;
+    }
+  }
+
+  Future<void> openModalFinalizarChat() async {
+    await showAppModalPregunta(
+      context: _context,
+      title: AppLocale.finalizarSoporte.getString(_context),
+      question: AppLocale.tituloFinalizarSoporte.getString(_context),
+      yes: AppLocale.botonFinalizarSoporte.getString(_context),
+      no: AppLocale.botonCancelarFinalizarSoporte.getString(_context),
+      onYes: () => _finalizarChat(),
+    );
+  }
+
+  void _finalizarChat() async {
+    try {
+      await provider.finalizarChat(
+        pkChatBarraFija: homeCubit.state.chat.idChat.toString(),
+      );
+      await cerrarSocket();
+      homeCubit.cleanChat();
     } on ServerErrorException {
       showToastNotification(
         context: _context,
