@@ -22,6 +22,13 @@ mixin AppLocale {
   static const String botonFinalizarSoporte = 'botonFinalizarSoporte';
   static const String botonCancelarFinalizarSoporte =
       'botonCancelarFinalizarSoporte';
+  static const String recibirArchivo = 'recibirArchivo';
+  static const String tituloRecibirArchivo = 'tituloRecibirArchivo';
+  static const String descripcionRecibirArchivo = 'descripcionRecibirArchivo';
+  static const String botonRecibirArchivo = 'botonRecibirArchivo';
+  static const String botonCancelarRecibirArchivo =
+      'botonCancelarRecibirArchivo';
+  static const String textoImagenSolicitud = 'textoImagenSolicitud';
 
   static const Map<String, dynamic> ES = {
     avisoSinInternet: 'No hay conexión a Internet.',
@@ -37,12 +44,19 @@ mixin AppLocale {
     buscar: 'Buscar',
     inputChat: "Mensaje",
     infoCliente: "Info. cliente",
-    habilitarRecibirArchivos: "Habilitar recibir archivos",
+    habilitarRecibirArchivos: "Solicitud de imagenes",
     finalizarSoporte: "Finalizar soporte",
     tituloFinalizarSoporte: "¿Estas seguro de finalizar el soporte?",
     descripcionFinalizarSoporte:
         "Una vez que finalices no podrás deshacer esta acción",
     botonFinalizarSoporte: "Finalizar soporte",
     botonCancelarFinalizarSoporte: "Cancelar",
+    recibirArchivo: "Recibir archivos",
+    tituloRecibirArchivo: "¿Estas seguro de recibir archivos?",
+    descripcionRecibirArchivo:
+        "Una vez que lo pidas no podrás deshacer esta acción",
+    botonRecibirArchivo: "Recibir archivos",
+    botonCancelarRecibirArchivo: "Cancelar",
+    textoImagenSolicitud: "Se ha solicitado el envio de imagenes",
   };
 }

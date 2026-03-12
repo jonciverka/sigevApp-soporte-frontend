@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:sigevappsoportefrontend/config/globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sigevappsoportefrontend/core/constant/api_constants.dart';
 
 class Utilities {
   Future<void> clearCache() async {
@@ -32,6 +33,10 @@ class Utilities {
       // Más de una semana -> dd/mm/yy
       return DateFormat('dd/MM/yy').format(date);
     }
+  }
+
+  getURLImage(String? path, {bool isChat = false}) {
+    return "${isChat ? ApiConstants.protocolChat : ApiConstants.protocol}${isChat ? ApiConstants.urlBaseChat : ApiConstants.urlBase}${ApiConstants.url}${ApiConstants.apiGetImages}/$path";
   }
 }
 

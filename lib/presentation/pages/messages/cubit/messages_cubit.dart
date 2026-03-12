@@ -77,6 +77,29 @@ class MessageCubit extends Cubit<MessageState> {
     ]);
   }
 
+  Future<void> _mandarMensajeImagen() async {
+    String mensaje = _textController.text;
+    _textController.text = '';
+    _textController.clear();
+    var mensajeEnviado = Mensaje.mensajeLocal({
+      "MENSAJE": '',
+      "FECHA_REGISTRO": DateTime.now(),
+      "TIPO_MENSAJE": TipoMensaje.imagen,
+      "PK_USUARIO": globals.user?.id ?? '',
+    });
+    emit(MessageData(chats: [...state.chats, mensajeEnviado]));
+
+    //CHAT GPT
+    //claveTramite, mensaje, pkUsuario, tipoMensaje
+    socket.emit('chat message gpt', [
+      homeCubit.state.chat.claveTramite ?? '',
+      mensaje,
+      "${globals.user?.id ?? ''}",
+      TipoMensaje.imagen.value,
+      homeCubit.state.chat.idContribuyente ?? '',
+    ]);
+  }
+
   void _obtenerMensajes() async {
     try {
       List<Mensaje> mensajes = await provider.obtenerMensajesChat(
@@ -130,6 +153,17 @@ class MessageCubit extends Cubit<MessageState> {
       yes: AppLocale.botonFinalizarSoporte.getString(_context),
       no: AppLocale.botonCancelarFinalizarSoporte.getString(_context),
       onYes: () => _finalizarChat(),
+    );
+  }
+
+  Future<void> openModalMandarMensajeImagen() async {
+    await showAppModalPregunta(
+      context: _context,
+      title: AppLocale.recibirArchivo.getString(_context),
+      question: AppLocale.tituloRecibirArchivo.getString(_context),
+      yes: AppLocale.botonRecibirArchivo.getString(_context),
+      no: AppLocale.botonCancelarRecibirArchivo.getString(_context),
+      onYes: () => _mandarMensajeImagen(),
     );
   }
 

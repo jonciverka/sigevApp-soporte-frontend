@@ -4,8 +4,8 @@ import 'package:sigevappsoportefrontend/config/globals.dart' as globals;
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/widgets/app_input_chat.dart';
-import 'package:sigevappsoportefrontend/presentation/pages/messages/widgets/app_mensaje_cliente.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/widgets/app_mensaje_soporte.dart';
+import 'package:sigevappsoportefrontend/presentation/pages/messages/widgets/app_mensaje_cliente.dart';
 
 class AppChatsBody extends StatelessWidget {
   const AppChatsBody({super.key});
@@ -23,9 +23,9 @@ class AppChatsBody extends StatelessWidget {
               children: [
                 ...cubit.state.chats.map((mensaje) {
                   if (mensaje.pkUsuario == globals.user?.id) {
-                    return AppMensajeCliente(mensaje: mensaje);
+                    return AppMensajeSoporte(mensaje: mensaje);
                   }
-                  return AppMensajeSoporte(mensaje: mensaje);
+                  return AppMensajeCliente(mensaje: mensaje);
                 }),
               ],
             ),

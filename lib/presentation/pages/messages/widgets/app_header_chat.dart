@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:provider/provider.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_icons.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
 import 'package:sigevappsoportefrontend/core/constant/strings.dart';
 import 'package:sigevappsoportefrontend/domain/models/chat.dart';
-import 'package:sigevappsoportefrontend/domain/models/mensaje.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_cubit.dart';
 
@@ -127,7 +125,6 @@ class _AppHeaderChatState extends State<AppHeaderChat> {
             ],
           ),
         ),
-        // AppMenuHeader(),
       ],
     );
   }
@@ -163,7 +160,7 @@ class AppMenuHeader extends StatelessWidget {
             title: AppLocale.habilitarRecibirArchivos.getString(context),
             icon: AppIcons.galery,
             onTap: () {
-              messageCubit.openModalFinalizarChat();
+              messageCubit.openModalMandarMensajeImagen();
               onClose();
             },
           ),

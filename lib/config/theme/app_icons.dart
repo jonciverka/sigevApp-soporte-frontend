@@ -19,6 +19,7 @@ class AppIcons {
   static const IconData info = Icons.info;
   static const IconData check = Icons.check_circle_outline_outlined;
   static const IconData galery = Icons.photo_library_sharp;
+  static const IconData arrowBack = Icons.arrow_back;
 
   // Icons
   static Icon smallIcon(IconData icon, {Color? color}) =>
