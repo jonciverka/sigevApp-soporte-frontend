@@ -57,6 +57,6 @@ mixin AppLocale {
         "Una vez que lo pidas no podrás deshacer esta acción",
     botonRecibirArchivo: "Recibir archivos",
     botonCancelarRecibirArchivo: "Cancelar",
-    textoImagenSolicitud: "Se ha solicitado el envio de imagenes",
+    textoImagenSolicitud: "Se ha solicitado envío de imagenes",
   };
 }

@@ -95,8 +95,13 @@ class AppMensajeSoporteImagen extends StatelessWidget {
       builder: (context, constraints) {
         return Container(
           decoration: BoxDecoration(
-            color: AppTheme.neutralColorWhite,
-            borderRadius: BorderRadius.circular(context.spacing20),
+            color: AppTheme.primaryColorChat,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(0),
+              bottomRight: Radius.circular(context.spacing12),
+              topLeft: Radius.circular(context.spacing12),
+              topRight: Radius.circular(context.spacing12),
+            ),
           ),
           padding: EdgeInsets.symmetric(
             horizontal: context.spacing8,
@@ -112,31 +117,48 @@ class AppMensajeSoporteImagen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Flexible(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FotoViewer(
-                              initialIndex: 0,
-                              fotos: cubit.state.chats
-                                  .where(
-                                    (e) => e.tipoMensaje == TipoMensaje.imagen,
-                                  )
-                                  .map((e) => e.urlImage!)
-                                  .toList(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FotoViewer(
+                                  initialIndex: 0,
+                                  fotos: cubit.state.chats
+                                      .where(
+                                        (e) =>
+                                            e.tipoMensaje == TipoMensaje.imagen,
+                                      )
+                                      .map((e) => e.urlImage!)
+                                      .toList(),
+                                ),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              context.spacing24,
+                            ),
+                            child: Image.network(
+                              mensaje.urlImage ?? '',
+                              width: 200,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        );
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(context.spacing24),
-                        child: Image.network(
-                          mensaje.urlImage ?? '',
-                          width: 200,
-                          fit: BoxFit.cover,
                         ),
-                      ),
+                        SizedBox(height: context.spacing4),
+                        Text(
+                          Utilities().obtenerHora(
+                            mensaje.fechaRegistro ?? DateTime.now(),
+                          ),
+                          style: context.captionRegularTextStyle,
+                        ),
+                      ],
                     ),
                   ),
                 ],

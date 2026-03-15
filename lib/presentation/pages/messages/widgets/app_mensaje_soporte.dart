@@ -15,6 +15,37 @@ class AppMensajeSoporte extends StatelessWidget {
       margin: const EdgeInsets.only(top: 3, right: 0, left: 0),
       width: double.infinity,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          switch (mensaje.tipoMensaje) {
+            TipoMensaje.texto => AppMensajeSoporteTexto(
+              mensaje: mensaje,
+              fecha: fecha,
+            ),
+
+            TipoMensaje.imagen => AppMensajeSoporteImagen(
+              mensaje: mensaje,
+              fecha: fecha,
+            ),
+            _ => AppMensajeSoporteTexto(mensaje: mensaje, fecha: fecha),
+          },
+        ],
+      ),
+    );
+  }
+}
+
+class AppMensajeSoporteTexto extends StatelessWidget {
+  const AppMensajeSoporteTexto({super.key, required this.mensaje, this.fecha});
+  final Mensaje mensaje;
+  final String? fecha;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 3, right: 0, left: 0),
+      width: double.infinity,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -73,6 +104,35 @@ class AppMensajeSoporte extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AppMensajeSoporteImagen extends StatelessWidget {
+  const AppMensajeSoporteImagen({super.key, required this.mensaje, this.fecha});
+  final Mensaje mensaje;
+  final String? fecha;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: context.spacing12),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            Utilities().obtenerHora(mensaje.fechaRegistro ?? DateTime.now()),
+            style: context.captionRegularTextStyle,
+          ),
+          SizedBox(height: context.spacing4),
+          Text(
+            AppLocale.textoImagenSolicitud.getString(context),
+            style: context.captionRegularTextStyle,
           ),
         ],
       ),
