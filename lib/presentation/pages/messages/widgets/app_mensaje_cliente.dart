@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
+import 'package:sigevappsoportefrontend/core/utilities/utilities.dart';
 import 'package:sigevappsoportefrontend/domain/models/mensaje.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/screens/preview_images_page.dart';
-import 'package:sigevappsoportefrontend/presentation/widgets/app_buttons.dart';
 
 class AppMensajeCliente extends StatelessWidget {
   const AppMensajeCliente({super.key, required this.mensaje, this.fecha});
@@ -47,29 +47,34 @@ class AppMensajeSoporteTexto extends StatelessWidget {
       builder: (context, constraints) {
         return Container(
           decoration: BoxDecoration(
-            color: AppTheme.neutralColorWhite,
-            borderRadius: BorderRadius.circular(15),
+            color: AppTheme.primaryColorChat,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(0),
+              bottomRight: Radius.circular(context.spacing12),
+              topLeft: Radius.circular(context.spacing12),
+              topRight: Radius.circular(context.spacing12),
+            ),
           ),
           padding: EdgeInsets.symmetric(
-            horizontal: context.spacing16,
+            horizontal: context.spacing12,
             vertical: context.spacing8,
           ),
-          margin: const EdgeInsets.only(top: 3, right: 40),
+          margin: EdgeInsets.only(right: 40, top: context.spacing8),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Flexible(
-                    child: Text(
-                      mensaje.mensaje ?? '',
-                      style: context.bodyRegularTextStyle,
-                    ),
-                  ),
-                ],
+              Text(
+                textAlign: TextAlign.start,
+                mensaje.mensaje ?? '',
+                style: context.bodyRegularTextStyle,
+              ),
+              SizedBox(height: context.spacing4),
+              Text(
+                Utilities().obtenerHora(
+                  mensaje.fechaRegistro ?? DateTime.now(),
+                ),
+                style: context.captionRegularTextStyle,
               ),
             ],
           ),

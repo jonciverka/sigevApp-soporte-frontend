@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
 import 'package:sigevappsoportefrontend/core/constant/strings.dart';
+import 'package:sigevappsoportefrontend/core/utilities/utilities.dart';
 import 'package:sigevappsoportefrontend/domain/models/mensaje.dart';
 
 class AppMensajeSoporte extends StatelessWidget {
@@ -19,42 +20,56 @@ class AppMensajeSoporte extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor,
-              borderRadius: BorderRadius.circular(context.spacing20),
+              color: AppTheme.primaryColorDisabledAndChat,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(context.spacing12),
+                bottomRight: Radius.circular(0),
+                topLeft: Radius.circular(context.spacing12),
+                topRight: Radius.circular(context.spacing12),
+              ),
             ),
             padding: EdgeInsets.symmetric(
-              horizontal: context.spacing16,
+              horizontal: context.spacing12,
               vertical: context.spacing8,
             ),
             margin: EdgeInsets.only(
               right: context.spacing12,
               left: context.spacing40,
+              top: context.spacing8,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Flexible(
-                  child: switch (mensaje.tipoMensaje) {
-                    TipoMensaje.texto => Text(
-                      mensaje.mensaje!,
-                      style: context.bodyRegularInputStyle.copyWith(
-                        color: AppTheme.neutralColorWhite,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      switch (mensaje.tipoMensaje) {
+                        TipoMensaje.texto => Text(
+                          mensaje.mensaje!,
+                          style: context.bodyRegularInputStyle,
+                        ),
+                        TipoMensaje.imagen => Text(
+                          AppLocale.textoImagenSolicitud.getString(context),
+                          style: context.bodyRegularInputStyle,
+                        ),
+                        _ => Text(
+                          mensaje.mensaje!,
+                          style: context.bodyRegularInputStyle,
+                        ),
+                      },
+                      SizedBox(height: context.spacing4),
+                      Text(
+                        Utilities().obtenerHora(
+                          mensaje.fechaRegistro ?? DateTime.now(),
+                        ),
+                        style: context.captionRegularTextStyle,
                       ),
-                    ),
-                    TipoMensaje.imagen => Text(
-                      AppLocale.textoImagenSolicitud.getString(context),
-                      style: context.bodyRegularInputStyle.copyWith(
-                        color: AppTheme.neutralColorWhite,
-                      ),
-                    ),
-                    _ => Text(
-                      mensaje.mensaje!,
-                      style: context.bodyRegularInputStyle.copyWith(
-                        color: AppTheme.neutralColorWhite,
-                      ),
-                    ),
-                  },
+                    ],
+                  ),
                 ),
               ],
             ),

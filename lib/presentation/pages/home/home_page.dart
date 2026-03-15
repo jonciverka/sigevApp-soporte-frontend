@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: AppTheme.neutralColorWhite,
+        backgroundColor: AppTheme.neutralColorBg,
         body: BlocProvider(
           create: (context) => HomeCubit(context: context),
           child: BlocBuilder<HomeCubit, HomeState>(

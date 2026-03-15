@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sigevappsoportefrontend/config/theme/icons_own_icons.dart';
 
 class AppIcons {
   // Icons color
@@ -20,6 +21,7 @@ class AppIcons {
   static const IconData check = Icons.check_circle_outline_outlined;
   static const IconData galery = Icons.photo_library_sharp;
   static const IconData arrowBack = Icons.arrow_back;
+  static const IconData arrowLogo = IconsOwn.arrow;
 
   // Icons
   static Icon smallIcon(IconData icon, {Color? color}) =>

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sigevappsoportefrontend/config/theme/app_theme.dart';
+import 'package:sigevappsoportefrontend/core/constant/assets_constants.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/home/cubit/home_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_cubit.dart';
 import 'package:sigevappsoportefrontend/presentation/pages/messages/cubit/messages_state.dart';
@@ -45,13 +46,19 @@ class MessagePageBody extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: AppTheme.neutralColorBg,
+        color: AppTheme.neutralColorWhite,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
         padding: EdgeInsets.all(context.spacing16),
         child: Stack(
           children: [
+            Center(
+              child: Opacity(
+                opacity: 0.1,
+                child: Image.asset(AssetsConstants.logoFlecha),
+              ),
+            ),
             AppChatsBody(),
             AppHeaderChat(chat: homeCubit.state.chat),
           ],
@@ -69,13 +76,16 @@ class MessagePageBodyWellcome extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: AppTheme.neutralColorBg,
+        color: AppTheme.neutralColorWhite,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
         padding: EdgeInsets.all(context.spacing16),
         child: Center(
-          child: Text("Bienvenido", style: context.bodyRegularInputStyle),
+          child: Opacity(
+            opacity: 0.3,
+            child: Image.asset(AssetsConstants.sigevLogoSinFondo),
+          ),
         ),
       ),
     );

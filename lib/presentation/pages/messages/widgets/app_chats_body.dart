@@ -36,7 +36,6 @@ class AppChatsBody extends StatelessWidget {
           onSubmit: () => cubit.mandarMensaje(),
           textController: cubit.chatText,
         ),
-        SizedBox(height: context.spacing16),
       ],
     );
   }

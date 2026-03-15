@@ -5,7 +5,9 @@ class AppTheme {
   // Primary Color
   static const Color primaryColor = Color(0xff033a68);
   static const Color primaryColorHover = Color(0xff021e36);
-  static const Color primaryColorDisabled = Color(0xffa0d3fd);
+  static const Color primaryColorDisabledAndChat = Color(0xffa0d3fd);
+  static const Color primaryColorDisabledAndChatAndChat = Color(0xffa0d3fd);
+  static const Color primaryColorChat = Color(0xffD2EAFE);
 
   //Neutrals Colors
   static const Color neutralColorBlack = Color(0xFF1c1c1e);
@@ -33,7 +35,7 @@ class AppTheme {
     fontFamily: headLineFontFamily,
     fontWeight: FontWeight.w700,
     height: convertPixelsToLogicalPixels(context, 1.1),
-    fontSize: convertPixelsToLogicalPixels(context, 28),
+    fontSize: convertPixelsToLogicalPixels(context, 32),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -42,7 +44,7 @@ class AppTheme {
     fontFamily: headLineFontFamily,
     fontWeight: FontWeight.w700,
     height: convertPixelsToLogicalPixels(context, 1.1),
-    fontSize: convertPixelsToLogicalPixels(context, 22),
+    fontSize: convertPixelsToLogicalPixels(context, 24),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -51,7 +53,7 @@ class AppTheme {
     fontFamily: headLineFontFamily,
     fontWeight: FontWeight.w700,
     height: convertPixelsToLogicalPixels(context, 1.1),
-    fontSize: convertPixelsToLogicalPixels(context, 20),
+    fontSize: convertPixelsToLogicalPixels(context, 18),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -61,7 +63,7 @@ class AppTheme {
     fontFamily: bodyFontFamily,
     fontWeight: FontWeight.w400,
     height: convertPixelsToLogicalPixels(context, 1.1),
-    fontSize: convertPixelsToLogicalPixels(context, 16),
+    fontSize: convertPixelsToLogicalPixels(context, 18),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -70,7 +72,7 @@ class AppTheme {
     fontFamily: bodyFontFamily,
     fontWeight: FontWeight.w700,
     height: convertPixelsToLogicalPixels(context, 1.1),
-    fontSize: convertPixelsToLogicalPixels(context, 16),
+    fontSize: convertPixelsToLogicalPixels(context, 18),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -79,7 +81,7 @@ class AppTheme {
     fontFamily: bodyFontFamily,
     fontWeight: FontWeight.w400,
     height: convertPixelsToLogicalPixels(context, 1.1),
-    fontSize: convertPixelsToLogicalPixels(context, 16),
+    fontSize: convertPixelsToLogicalPixels(context, 18),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -98,7 +100,7 @@ class AppTheme {
   static TextStyle buttonTextStyle(BuildContext context) => TextStyle(
     fontFamily: buttonFontFamily,
     fontWeight: FontWeight.w700,
-    fontSize: convertPixelsToLogicalPixels(context, 14),
+    fontSize: convertPixelsToLogicalPixels(context, 18),
     height: convertPixelsToLogicalPixels(context, 1.1),
     letterSpacing: 0.0,
   );
@@ -108,7 +110,7 @@ class AppTheme {
   static TextStyle captionRegular(BuildContext context) => TextStyle(
     fontFamily: captionFontFamily,
     fontWeight: FontWeight.w400,
-    fontSize: convertPixelsToLogicalPixels(context, 12),
+    fontSize: convertPixelsToLogicalPixels(context, 14),
     height: convertPixelsToLogicalPixels(context, 1.1),
     color: neutralColorBlack,
     letterSpacing: 0.0,
@@ -117,7 +119,7 @@ class AppTheme {
   static TextStyle captionBold(BuildContext context) => TextStyle(
     fontFamily: captionFontFamily,
     fontWeight: FontWeight.w700,
-    fontSize: convertPixelsToLogicalPixels(context, 12),
+    fontSize: convertPixelsToLogicalPixels(context, 14),
     color: neutralColorBlack,
     letterSpacing: 0.0,
   );
@@ -855,7 +857,7 @@ class AppTheme {
         ),
       ),
       contentPadding: EdgeInsets.only(
-        top: context.spacing12,
+        top: 15,
         // bottom: context.spacing4,
       ),
     );
@@ -866,7 +868,7 @@ class AppTheme {
       Set<WidgetState> states,
     ) {
       if (states.contains(WidgetState.pressed)) {
-        return primaryColorDisabled;
+        return primaryColorDisabledAndChat;
       }
       if (states.contains(WidgetState.hovered)) {
         return neutralColorBg;

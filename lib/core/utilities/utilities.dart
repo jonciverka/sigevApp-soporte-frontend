@@ -35,6 +35,10 @@ class Utilities {
     }
   }
 
+  String obtenerHora(DateTime fecha) {
+    return DateFormat('HH:mm').format(fecha);
+  }
+
   getURLImage(String? path, {bool isChat = false}) {
     return "${isChat ? ApiConstants.protocolChat : ApiConstants.protocol}${isChat ? ApiConstants.urlBaseChat : ApiConstants.urlBase}${ApiConstants.url}${ApiConstants.apiGetImages}/$path";
   }

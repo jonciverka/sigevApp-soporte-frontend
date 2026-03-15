@@ -26,9 +26,10 @@ class _AppInputChatState<T> extends State<AppInputChat<T>> {
     return Row(
       children: [
         Expanded(
-          child: AppTextFormField(
+          child: AppTextFormFieldChat(
             controller: widget._textController,
             labelText: AppLocale.inputChat.getString(context),
+            hintText: AppLocale.inputChat.getString(context),
             validator: (value) {
               return null;
             },
@@ -43,7 +44,7 @@ class _AppInputChatState<T> extends State<AppInputChat<T>> {
           SizedBox(width: context.spacing8),
         if (widget._textController.text.isNotEmpty)
           AppIconButton(
-            icon: AppIcons.arrowForward,
+            icon: AppIcons.arrowLogo,
             onPressed: () => widget.onSubmit(),
             iconSize: IconSize.medium,
           ),

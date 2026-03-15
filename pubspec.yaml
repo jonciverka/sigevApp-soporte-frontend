@@ -62,3 +62,6 @@ flutter:
         - asset: fonts/Manrope-Medium.ttf
         - asset: fonts/Manrope-Regular.ttf
         - asset: fonts/Manrope-SemiBold.ttf
+    - family: IconsOwn 
+      fonts:
+        - asset: fonts/IconsOwn.ttf
